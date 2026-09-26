@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My reservations | Lodge Sri Lanka</title>
+  <meta name="description" content="Explore and book luxury hotel villas across Sri Lanka - Mirissa, Galle, Kandy, Kalutara, and Anuradhapura. Best price guaranteed with instant reservation.">
+
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'booking-navy': '#003580',
+            'booking-navy-dark': '#00224f',
+            'booking-blue': '#006ce4',
+            'booking-blue-hover': '#0057b8',
+            'booking-yellow': '#febb02',
+            'booking-green': '#008234',
+            'booking-red': '#d4111e',
+            'booking-muted': '#595959'
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/common.js"></script>
+</head>
+<body class="bg-[#f5f7fa] text-gray-900 min-h-screen flex flex-col antialiased" data-auth="required">
+
+<header class="bg-booking-navy text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-1.5 focus:outline-none">
+          <span class="bg-white rounded-md px-2.5 py-1 flex items-center shadow-xs">
+            <img src="assets/images/logo.png" alt="Lodge - Curated Global Stays" class="h-9 w-auto">
+          </span>
+        <span class="text-[10px] bg-booking-yellow text-booking-navy font-extrabold px-1.5 py-0.5 rounded tracking-wider uppercase ml-1">Sri Lanka</span>
+      </a>
+
+      <div class="flex items-center gap-2 sm:gap-4 text-sm font-semibold">
+        <div class="relative">
+          <button id="currency-btn" type="button" class="hover:bg-white/10 px-2.5 py-1.5 rounded transition flex items-center gap-1.5 text-xs sm:text-sm" title="Change currency">
+            <span id="currency-label">LKR</span><i class="fa-solid fa-chevron-down text-[9px] opacity-70"></i>
+          </button>
+        </div>
+        <div id="auth-slot" class="flex items-center gap-2 sm:gap-4">
+          <a href="register.html" class="bg-white text-booking-blue hover:bg-gray-100 px-3.5 py-1.5 rounded text-xs sm:text-sm font-bold transition shadow-xs">
+            Register
+          </a>
+          <a href="login.html" class="bg-white text-booking-blue hover:bg-gray-100 px-3.5 py-1.5 rounded text-xs sm:text-sm font-bold transition shadow-xs">
+            Sign in
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="bg-white border-b border-gray-200 py-2.5 text-xs text-booking-muted">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 flex-wrap">
+    <a href="index.html" class="text-booking-blue hover:underline">Home</a>
+    <i class="fa-solid fa-chevron-right text-[10px] text-gray-400"></i>
+    <span class="text-gray-800 font-semibold">My reservations</span>
+  </div>
+</div>
+
+<section class="bg-gradient-to-r from-booking-navy via-[#004299] to-booking-blue text-white py-7 border-b border-white/10 shadow-inner">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+
+      <div class="flex items-center gap-4 sm:gap-5">
+        <span id="hero-avatar" class="w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-full border-3 border-booking-yellow shadow-lg bg-booking-navy-dark text-white font-extrabold text-xl flex items-center justify-center">--</span>
+        <div class="space-y-1 min-w-0">
+          <div class="flex items-center gap-2 flex-wrap">
+            <h1 id="hero-name" class="text-xl sm:text-2xl font-extrabold tracking-tight truncate">My reservations</h1>
+            <span id="hero-genius" class="hidden bg-white/20 border border-white/30 text-yellow-300 text-[10px] font-extrabold px-2 py-0.5 rounded-full items-center gap-1">
+                <i class="fa-solid fa-crown text-booking-yellow mr-1"></i><span id="hero-genius-text"></span>
+              </span>
+          </div>
+          <p id="hero-email" class="text-xs sm:text-sm text-blue-100 font-medium truncate"></p>
+          <p id="hero-member-since" class="text-[11px] text-blue-200"></p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-white/10 backdrop-blur-md p-3 rounded-xl border border-white/15">
+        <div class="text-center px-3 py-1">
+          <span class="text-[10px] uppercase tracking-wider text-blue-200 font-bold block">Upcoming</span>
+          <strong id="stat-upcoming" class="text-xl sm:text-2xl font-extrabold text-white">0</strong>
+        </div>
+        <div class="text-center px-3 py-1 border-l border-white/20">
+          <span class="text-[10px] uppercase tracking-wider text-blue-200 font-bold block">Completed</span>
+          <strong id="stat-completed" class="text-xl sm:text-2xl font-extrabold text-white">0</strong>
+        </div>
+        <div class="text-center px-3 py-1 border-l border-white/20">
+          <span class="text-[10px] uppercase tracking-wider text-blue-200 font-bold block">Cancelled</span>
+          <strong id="stat-cancelled" class="text-xl sm:text-2xl font-extrabold text-white">0</strong>
+        </div>
+        <div class="text-center px-3 py-1 border-l border-white/20">
+          <span class="text-[10px] uppercase tracking-wider text-blue-200 font-bold block">Reviews written</span>
+          <strong id="stat-reviews" class="text-xl sm:text-2xl font-extrabold text-white">0</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-8">
+
+  <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+    <div id="res-tabs" class="flex gap-1 border-b border-gray-200 text-sm font-semibold overflow-x-auto">
+      <button data-tab="upcoming" class="res-tab px-4 py-2.5 border-b-2 border-booking-blue text-booking-blue whitespace-nowrap">
+        Upcoming <span class="res-tab-badge ml-1 text-[10px] font-extrabold px-1.5 py-0.5 rounded-full bg-blue-100 text-booking-blue" data-count="upcoming">0</span>
+      </button>
+      <button data-tab="completed" class="res-tab px-4 py-2.5 border-b-2 border-transparent text-gray-500 hover:text-gray-800 whitespace-nowrap">
+        Completed <span class="res-tab-badge ml-1 text-[10px] font-extrabold px-1.5 py-0.5 rounded-full bg-gray-200 text-gray-700" data-count="completed">0</span>
+      </button>
+      <button data-tab="cancelled" class="res-tab px-4 py-2.5 border-b-2 border-transparent text-gray-500 hover:text-gray-800 whitespace-nowrap">
+        Cancelled <span class="res-tab-badge ml-1 text-[10px] font-extrabold px-1.5 py-0.5 rounded-full bg-gray-200 text-gray-700" data-count="cancelled">0</span>
+      </button>
+    </div>
+    <a href="index.html" class="bg-booking-blue hover:bg-booking-blue-hover text-white font-bold text-xs px-4 py-2.5 rounded transition shrink-0"><i class="fa-solid fa-magnifying-glass mr-1"></i> Find a villa</a>
+  </div>
+
+  <div class="relative mb-5">
+    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+    <input type="text" id="res-search-input" placeholder="Search by villa name, city, or reference number" class="w-full sm:w-96 pl-9 pr-3 py-2 text-xs border border-gray-300 rounded-md focus:ring-2 focus:ring-booking-blue focus:border-booking-blue outline-none bg-white">
+  </div>
+
+  <div id="res-list" class="space-y-4">
+    <div class="bg-white border border-gray-200 rounded-xl p-10 text-center text-sm text-gray-500">Loading your reservations...</div>
+  </div>
+</main>
+
+<div id="review-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl animate-fade-in">
+    <div class="flex items-center justify-between p-5 border-b border-gray-100 sticky top-0 bg-white rounded-t-2xl">
+      <div>
+        <h2 class="font-extrabold text-gray-900 text-lg">Write a review</h2>
+        <p id="review-villa" class="text-xs text-booking-muted mt-0.5"></p>
+      </div>
+      <button type="button" id="review-close" class="text-gray-400 hover:text-gray-700"><i class="fa-solid fa-xmark text-lg"></i></button>
+    </div>
+    <form id="review-form" class="p-5 space-y-5 text-xs">
+
+      <div>
+        <p class="font-bold text-gray-700 mb-1">Rate key categories (1 to 10) *</p>
+        <p class="text-[11px] text-gray-500 mb-2">Drag each slider to score your stay.</p>
+        <div id="review-stars" class="bg-gray-50 border border-gray-200 rounded-lg px-4 divide-y divide-gray-200 grid grid-cols-1 sm:grid-cols-2 sm:gap-x-6 sm:divide-y-0"></div>
+      </div>
+
+      <div class="flex items-center gap-3 bg-gray-50 border border-gray-200 rounded-lg p-3">
+        <div id="review-score-display" class="booking-score-badge w-11 h-11 text-base font-extrabold shrink-0">--</div>
+        <div>
+          <strong id="review-score-label" class="text-sm font-extrabold text-booking-navy block">Rate every category</strong>
+          <p class="text-[11px] text-gray-500">Your overall score (out of 10) is the average of the six categories above.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <label class="block font-bold text-gray-700" for="rv-title">Review title *</label>
+          <span id="rv-title-count" class="text-[10px] text-gray-400">0/200</span>
+        </div>
+        <input id="rv-title" type="text" maxlength="200" placeholder="Sum up your stay in a few words" class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-booking-blue outline-none text-xs">
+      </div>
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <label class="block font-bold text-gray-700" for="rv-text">Your review *</label>
+          <span id="rv-text-count" class="text-[10px] text-gray-400">0/2000</span>
+        </div>
+        <textarea id="rv-text" rows="4" maxlength="2000" placeholder="Tell other guests about the room comfort, views, staff and check-in experience..." class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-booking-blue outline-none text-xs leading-relaxed"></textarea>
+      </div>
+      <p class="text-[11px] text-gray-400"><i class="fa-solid fa-shield-halved mr-1"></i>Only verified guests who completed this stay can submit a review. It's saved to your account and goes live once our team approves it.</p>
+      <p id="review-error" class="hidden text-booking-red font-semibold bg-red-50 border border-red-200 rounded px-3 py-2"></p>
+      <div class="flex gap-2 pt-1">
+        <button type="button" id="review-cancel" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-2.5 rounded text-xs transition">Cancel</button>
+        <button id="review-submit" type="submit" class="flex-1 bg-booking-blue hover:bg-booking-blue-hover text-white font-bold py-2.5 rounded text-xs transition">Submit review</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<footer class="bg-booking-navy text-white text-xs mt-16 py-6 text-center text-blue-200">
+  © 2026 Lodge Sri Lanka. All rights reserved.
+</footer>
+
+<script>
+
+  let bookings = [];
+  let tab = 'upcoming';
+  let query = '';
+  const today = toIso(new Date());
+
+  const isCancelled = (b) => b.bookingStatus === 'Cancelled';
+
+  const isCompleted = (b) => !isCancelled(b) && (b.bookingStatus === 'Completed' || b.checkOut < today);
+  const inTab = (b) => tab === 'cancelled' ? isCancelled(b) : tab === 'completed' ? isCompleted(b) : (!isCancelled(b) && !isCompleted(b));
+  const matchesQuery = (b) => {
+    if (!query) return true;
+    const q = query.toLowerCase();
+    return b.villaName.toLowerCase().includes(q) || b.city.toLowerCase().includes(q) || b.reference.toLowerCase().includes(q);
+  };
+  const visible = (b) => inTab(b) && matchesQuery(b);
+
+  function fillHero(user) {
+    $('hero-avatar').textContent = initialsOf(user.fullName);
+    $('hero-name').textContent = user.fullName;
+    $('hero-email').textContent = user.email;
+    $('hero-member-since').textContent = user.memberSince ? `Member since ${user.memberSince}` : '';
+    if (user.geniusLevel > 0) {
+      $('hero-genius').classList.remove('hidden');
+      $('hero-genius').classList.add('inline-flex');
+      $('hero-genius-text').textContent = `Genius Level ${user.geniusLevel} member`;
+    }
+  }
+
+  function updateStats() {
+    const prev = tab;
+    tab = 'upcoming'; $('stat-upcoming').textContent = bookings.filter(inTab).length;
+    tab = 'completed'; $('stat-completed').textContent = bookings.filter(inTab).length;
+    tab = 'cancelled'; $('stat-cancelled').textContent = bookings.filter(inTab).length;
+    tab = prev;
+    $('stat-reviews').textContent = bookings.filter((b) => !!b.reviewStatus).length;
+  }
+
+  function statusPill(b) {
+    const m = { Confirmed: 'bg-green-100 text-booking-green', Pending: 'bg-amber-100 text-amber-800', Cancelled: 'bg-red-100 text-booking-red', Completed: 'bg-gray-100 text-gray-700' };
+    const label = isCompleted(b) && b.bookingStatus === 'Confirmed' ? 'Completed' : b.bookingStatus;
+    return `<span class="text-[11px] font-bold px-2 py-0.5 rounded-full ${m[label] || m.Pending}">${esc(label)}</span>`;
+  }
+
+  function cancelArea(b) {
+    if (isCancelled(b)) return '<span class="text-gray-400"><i class="fa-regular fa-circle-xmark mr-1"></i>This reservation was cancelled.</span>';
+    if (isCompleted(b)) return '';
+    if (b.canCancel) {
+      return `<span class="flex items-center gap-3 flex-wrap"><span class="text-gray-400">Free to cancel online until ${fmtDay(fromIso(b.cancelUntil))}</span>
+          <button data-cancel="${esc(b.reference)}" class="border border-red-300 text-booking-red hover:bg-red-50 font-bold px-3 py-1.5 rounded transition">Cancel reservation</button></span>`;
+    }
+    return `<span class="text-amber-700"><i class="fa-solid fa-phone mr-1"></i>Check-in is within ${b.cancelMinDays} days, so it can't be cancelled online. Contact the villa with your reference to change or cancel.</span>`;
+  }
+
+  function reviewArea(b) {
+    if (b.reviewStatus) {
+      const m = {
+        Pending: ['fa-hourglass-half', 'Your review is awaiting approval.', 'text-amber-700'],
+        Approved: ['fa-circle-check', 'Your review is published. Thank you!', 'text-booking-green'],
+        Rejected: ['fa-circle-xmark', 'Your review was not published.', 'text-gray-400']
+      };
+      const [icon, text, cls] = m[b.reviewStatus] || ['fa-star', 'Reviewed.', 'text-gray-400'];
+      return `<span class="${cls} font-semibold"><i class="fa-solid ${icon} mr-1"></i>${text}</span>`;
+    }
+
+    const eligible = b.canReview !== undefined ? b.canReview : isCompleted(b);
+    if (!eligible) return '';
+    return `<button data-review="${esc(b.reference)}" class="border border-booking-blue text-booking-blue hover:bg-blue-50 font-bold px-3 py-1.5 rounded transition"><i class="fa-regular fa-star mr-1"></i>Review this villa & room</button>`;
+  }
+
+  function card(b) {
+    const link = `villa-details.html?slug=${encodeURIComponent(b.villaSlug)}`;
+    const guests = `${plural(b.adults, 'adult')}${b.children ? ', ' + plural(b.children, 'child', 'children') : ''}`;
+    return `
+      <article class="bg-white border border-gray-200 rounded-xl overflow-hidden flex flex-col sm:flex-row shadow-xs hover:shadow-md transition">
+        <a href="${link}" class="sm:w-56 h-40 sm:h-auto shrink-0 bg-gray-100"><img src="${esc(b.heroImage)}" alt="" class="w-full h-full object-cover" onerror="this.style.visibility='hidden'"></a>
+        <div class="flex-1 p-4 sm:p-5 min-w-0">
+          <div class="flex flex-wrap items-start justify-between gap-2">
+            <div class="min-w-0">
+              <a href="${link}" class="text-lg font-extrabold text-gray-900 hover:text-booking-blue truncate block">${esc(b.villaName)}</a>
+              <p class="text-xs text-booking-muted"><i class="fa-solid fa-location-dot mr-1"></i>${esc(b.city)}</p>
+            </div>
+            ${statusPill(b)}
+          </div>
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-4 text-xs">
+            <div><p class="text-gray-400">Check-in</p><p class="font-bold text-gray-900">${fmtDay(fromIso(b.checkIn))}</p><p class="text-gray-500">From ${CHECKIN_TIME}</p></div>
+            <div><p class="text-gray-400">Check-out</p><p class="font-bold text-gray-900">${fmtDay(fromIso(b.checkOut))}</p><p class="text-gray-500">Until ${CHECKOUT_TIME}</p></div>
+            <div><p class="text-gray-400">Stay</p><p class="font-bold text-gray-900">${plural(b.nights, 'night')}</p><p class="text-gray-500">${guests}</p></div>
+            <div><p class="text-gray-400">Total</p><p class="font-bold text-booking-blue">${money(b.totalAmountLkr)}</p><p class="text-gray-500">+${money(b.totalTaxesLkr)} taxes</p></div>
+          </div>
+          <div class="mt-3 text-xs text-gray-700">${b.rooms.map((r) => `<span class="inline-block bg-gray-100 rounded px-2 py-0.5 mr-1 mb-1">${r.quantity} × ${esc(r.name)}</span>`).join('')}</div>
+          ${b.cancellation ? `<p class="text-[11px] text-gray-500 mt-1"><i class="fa-regular fa-calendar-xmark mr-1"></i>${esc(b.cancellation)}</p>` : ''}
+          <div class="flex flex-wrap items-center justify-between gap-2 mt-3 pt-3 border-t border-gray-100 text-[11px] text-gray-500">
+            <span>Ref <b class="text-booking-blue font-mono">${esc(b.reference)}</b> · ${esc(b.paymentMethod || 'Pay at Villa')}${b.bookedOn ? ' · booked ' + fmtDay(fromIso(b.bookedOn)) : ''}</span>
+            <span class="flex items-center gap-2 flex-wrap">
+              <button data-invoice="${esc(b.reference)}" class="border border-gray-300 text-gray-700 hover:bg-gray-50 font-bold px-3 py-1.5 rounded transition"><i class="fa-solid fa-file-invoice mr-1"></i>Invoice</button>
+              ${cancelArea(b)}${cancelArea(b) && reviewArea(b) ? ' <span class="mx-1"></span> ' : ''}${reviewArea(b)}
+            </span>
+          </div>
+        </div>
+      </article>`;
+  }
+
+  function render() {
+    updateStats();
+    ['upcoming', 'completed', 'cancelled'].forEach((t) => {
+      const prev = tab; tab = t; const n = bookings.filter(inTab).length; tab = prev;
+      const el = document.querySelector(`[data-count="${t}"]`);
+      el.textContent = n;
+      el.classList.toggle('bg-blue-100', t === tab); el.classList.toggle('text-booking-blue', t === tab);
+      el.classList.toggle('bg-gray-200', t !== tab); el.classList.toggle('text-gray-700', t !== tab);
+    });
+    document.querySelectorAll('.res-tab').forEach((b) => {
+      const on = b.dataset.tab === tab;
+      b.classList.toggle('border-booking-blue', on); b.classList.toggle('text-booking-blue', on);
+      b.classList.toggle('border-transparent', !on); b.classList.toggle('text-gray-500', !on);
+    });
+    const list = bookings.filter(visible);
+    document.getElementById('res-list').innerHTML = list.length ? list.map(card).join('') : `
+        <div class="bg-white border border-gray-200 rounded-xl p-10 text-center">
+          <i class="fa-solid fa-suitcase-rolling text-3xl text-gray-300"></i>
+          <p class="font-bold text-gray-800 mt-3">${bookings.length ? 'Nothing here' : 'No reservations yet'}</p>
+          <p class="text-xs text-gray-500 mt-1">${!bookings.length ? 'When you book a villa it will show up here.' : (query ? 'Try a different search.' : 'Try another tab.')}</p>
+          ${bookings.length ? '' : '<a href="index.html" class="inline-block mt-4 bg-booking-blue text-white font-bold text-xs px-4 py-2.5 rounded">Find a villa</a>'}
+        </div>`;
+  }
+
+  function onCurrencyChange() { render(); }
+
+  const RATING_CATS = [
+    ['cleanliness', 'Cleanliness', 'fa-broom'],
+    ['comfort', 'Comfort & Bed', 'fa-couch'],
+    ['facilities', 'Facilities & Pool', 'fa-person-swimming'],
+    ['staff', 'Staff & Hospitality', 'fa-user'],
+    ['value', 'Value for Money', 'fa-hand-holding-dollar'],
+    ['location', 'Location & Scenery', 'fa-location-dot']
+  ];
+  const SCORE_LABELS = [[9, 'Exceptional'], [8, 'Fabulous'], [7, 'Very good'], [6, 'Good'], [0, 'Okay']];
+  const DEFAULT_RATING = 8;
+  let reviewRef = null;
+  const stars = {};
+
+  function scoreLabel(score) { return (SCORE_LABELS.find(([min]) => score >= min) || SCORE_LABELS[SCORE_LABELS.length - 1])[1]; }
+
+  function updateScorePreview() {
+    const rated = RATING_CATS.filter(([key]) => stars[key]);
+    const badge = $('review-score-display'), label = $('review-score-label');
+    if (!rated.length) { badge.textContent = '--'; badge.style.opacity = .4; label.textContent = 'Rate every category'; return; }
+    const avg = rated.reduce((sum, [key]) => sum + stars[key], 0) / rated.length;
+    badge.style.opacity = 1;
+    badge.textContent = avg.toFixed(1);
+    label.textContent = rated.length === RATING_CATS.length ? scoreLabel(avg) : `${rated.length}/${RATING_CATS.length} categories rated`;
+  }
+
+  function buildStars() {
+    document.getElementById('review-stars').innerHTML = RATING_CATS.map(([key, label, icon]) => `
+        <div class="rating-slider-row" data-row="${key}">
+          <div class="rating-slider-head">
+            <span class="rsr-label"><i class="fa-solid ${icon}"></i>${label}</span>
+            <span class="rsr-value" data-value="${key}">${DEFAULT_RATING}</span>
+          </div>
+          <input type="range" class="rating-slider" data-stars="${key}" min="1" max="10" step="1" value="${DEFAULT_RATING}" style="--rsr-fill:${DEFAULT_RATING * 10}%">
+        </div>`).join('');
+    RATING_CATS.forEach(([key]) => { stars[key] = DEFAULT_RATING; });
+    document.getElementById('review-stars').addEventListener('input', (e) => {
+      const input = e.target.closest('[data-stars]'); if (!input) return;
+      const key = input.dataset.stars; const n = Number(input.value);
+      stars[key] = n;
+      input.style.setProperty('--rsr-fill', (n * 10) + '%');
+      const valueEl = document.querySelector(`.rsr-value[data-value="${key}"]`);
+      if (valueEl) valueEl.textContent = n;
+      updateScorePreview();
+    });
+  }
+  buildStars();
+
+  function openReviewModal(ref) {
+    const b = bookings.find((x) => x.reference === ref); if (!b) return;
+    reviewRef = ref;
+    document.getElementById('review-villa').innerHTML = `<i class="fa-solid fa-house mr-1"></i>${esc(b.villaName)} · ${esc(b.rooms.map((r) => r.name).join(', '))} · ${fmtDay(fromIso(b.checkIn))} - ${fmtDay(fromIso(b.checkOut))}`;
+    document.getElementById('rv-title').value = ''; document.getElementById('rv-text').value = '';
+    $('rv-title-count').textContent = '0/200'; $('rv-text-count').textContent = '0/2000';
+    document.getElementById('review-error').classList.add('hidden');
+    RATING_CATS.forEach(([key]) => {
+      stars[key] = DEFAULT_RATING;
+      const input = document.querySelector(`[data-stars="${key}"]`);
+      if (input) { input.value = DEFAULT_RATING; input.style.setProperty('--rsr-fill', (DEFAULT_RATING * 10) + '%'); }
+      const valueEl = document.querySelector(`.rsr-value[data-value="${key}"]`);
+      if (valueEl) valueEl.textContent = DEFAULT_RATING;
+    });
+    updateScorePreview();
+    document.getElementById('review-modal').classList.remove('hidden');
+  }
+  function closeReviewModal() { document.getElementById('review-modal').classList.add('hidden'); reviewRef = null; }
+  document.getElementById('review-close').addEventListener('click', closeReviewModal);
+  document.getElementById('review-cancel').addEventListener('click', closeReviewModal);
+  document.getElementById('review-modal').addEventListener('mousedown', (e) => { if (e.target.id === 'review-modal') closeReviewModal(); });
+
+  $('rv-title').addEventListener('input', (e) => { $('rv-title-count').textContent = `${e.target.value.length}/200`; });
+  $('rv-text').addEventListener('input', (e) => { $('rv-text-count').textContent = `${e.target.value.length}/2000`; });
+
+  document.getElementById('review-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const err = document.getElementById('review-error'), btn = document.getElementById('review-submit');
+    const fail = (m) => { err.textContent = m; err.classList.remove('hidden'); };
+    err.classList.add('hidden');
+    if (RATING_CATS.some(([key]) => !stars[key])) return fail('Please rate every category.');
+    const title = document.getElementById('rv-title').value.trim();
+    const text = document.getElementById('rv-text').value.trim();
+    if (title.length < 3) return fail('Give your review a short title.');
+    if (text.length < 10) return fail('Please write a few words about your stay.');
+    btn.disabled = true; btn.textContent = 'Submitting...';
+    try {
+      const data = await authCall('POST', `api/auth/bookings/${encodeURIComponent(reviewRef)}/review`, { ...stars, title, text });
+      showToast(data.message || 'Review submitted', 'success');
+      closeReviewModal();
+      bookings = (await authCall('GET', 'api/auth/bookings')).bookings;
+      render();
+    } catch (ex) { fail(ex.message); }
+    btn.disabled = false; btn.textContent = 'Submit review';
+  });
+
+  document.getElementById('res-list').addEventListener('click', async (e) => {
+    const rbtn = e.target.closest('[data-review]'); if (rbtn) return openReviewModal(rbtn.dataset.review);
+    const ibtn = e.target.closest('[data-invoice]');
+    if (ibtn) { const b = bookings.find((x) => x.reference === ibtn.dataset.invoice); if (b) openInvoice(b); return; }
+    const btn = e.target.closest('[data-cancel]'); if (!btn) return;
+    const b = bookings.find((x) => x.reference === btn.dataset.cancel); if (!b) return;
+    if (!confirm(`Cancel your reservation at ${b.villaName} (${fmtDay(fromIso(b.checkIn))} - ${fmtDay(fromIso(b.checkOut))})?\n\nThis cannot be undone.`)) return;
+    btn.disabled = true; btn.textContent = 'Cancelling...';
+    try {
+      await authCall('POST', `api/auth/bookings/${encodeURIComponent(b.reference)}/cancel`);
+      showToast('Reservation cancelled', 'success');
+    } catch (err) { showToast(err.message, 'error'); }
+    try { bookings = (await authCall('GET', 'api/auth/bookings')).bookings; } catch (x) { }
+    render();
+  });
+
+  document.getElementById('res-tabs').addEventListener('click', (e) => {
+    const b = e.target.closest('.res-tab'); if (!b) return; tab = b.dataset.tab; render();
+  });
+
+  let searchDebounce;
+  document.getElementById('res-search-input').addEventListener('input', (e) => {
+    clearTimeout(searchDebounce);
+    searchDebounce = setTimeout(() => { query = e.target.value.trim(); render(); }, 150);
+  });
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const user = await refreshAuth();
+      if (user) fillHero(user);
+      bookings = (await authCall('GET', 'api/auth/bookings')).bookings;
+
+      if (!bookings.some(inTab)) tab = bookings.some((b) => isCompleted(b)) ? 'completed' : bookings.some(isCancelled) ? 'cancelled' : 'upcoming';
+      render();
+    } catch (err) {
+      document.getElementById('res-list').innerHTML = `<div class="bg-white border border-red-200 rounded-xl p-10 text-center text-sm text-booking-red">${esc(err.message)}</div>`;
+    }
+  });
+
+</script>
+</body>
+</html>

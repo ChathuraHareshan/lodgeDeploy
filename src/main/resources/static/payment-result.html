@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Payment status · Lodge</title>
+<script src="https://cdn.tailwindcss.com"></script><link rel="stylesheet" href="css/styles.css"><script src="js/common.js" defer></script><script src="js/payment-result.js" defer></script></head>
+<body class="min-h-screen bg-gray-50 text-gray-900 flex items-center justify-center p-4">
+<main class="w-full max-w-lg bg-white rounded-xl shadow p-6 text-center">
+<h1 class="text-2xl font-extrabold text-booking-navy">Your reservation payment</h1>
+<p id="payment-message" class="mt-3 text-sm text-gray-600">Checking PayHere payment confirmation…</p>
+<p class="mt-3 text-sm">Reference: <strong id="booking-reference">-</strong></p>
+<p id="payment-state" class="mt-2 font-bold"></p>
+<div id="payment-actions" class="hidden mt-6 flex gap-3 justify-center">
+<button id="invoice-button" class="hidden bg-booking-blue text-white px-4 py-2 rounded font-bold">Print invoice</button>
+<a href="my-reservations.html" class="bg-gray-100 px-4 py-2 rounded font-bold">My reservations</a>
+</div>
+<a href="index.html" class="inline-block mt-6 text-booking-blue font-semibold">Return to Lodge</a>
+</main></body></html>

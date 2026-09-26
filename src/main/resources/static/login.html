@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in | Lodge Sri Lanka</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'booking-navy': '#003580',
+            'booking-navy-dark': '#00224f',
+            'booking-blue': '#006ce4',
+            'booking-blue-hover': '#0057b8',
+            'booking-yellow': '#febb02',
+            'booking-green': '#008234',
+            'booking-red': '#d4111e',
+            'booking-muted': '#595959'
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/common.js"></script>
+</head>
+<body class="bg-[#ffffff] text-gray-900 min-h-screen flex flex-col antialiased">
+
+  <header class="bg-booking-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+
+        <a href="index.html" class="flex items-center gap-1.5 focus:outline-none">
+          <span class="bg-white rounded-md px-2.5 py-1 flex items-center shadow-xs">
+            <img src="assets/images/logo.png" alt="Lodge - Curated Global Stays" class="h-9 w-auto">
+          </span>
+          <span class="text-[10px] bg-booking-yellow text-booking-navy font-extrabold px-1.5 py-0.5 rounded tracking-wider uppercase ml-1">Sri Lanka</span>
+        </a>
+
+        <div class="flex items-center gap-3 text-sm font-semibold">
+
+          <a href="index.html" class="text-xs hover:underline"><i class="fa-solid fa-arrow-left mr-1"></i> Back to search</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 flex items-center justify-center px-4 py-12 bg-gray-50">
+    <div class="max-w-md w-full space-y-6">
+      <div class="bg-white p-8 rounded-xl border border-gray-200 shadow-sm">
+        <h1 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-2">
+          Sign in or create an account
+        </h1>
+        <p class="text-xs text-booking-muted mb-6 leading-relaxed">
+          Sign in to unlock instant Genius discounts, view your villa bookings, and access member-only rates across Sri Lanka.
+        </p>
+
+        <form id="login-form" class="space-y-4 text-xs" novalidate>
+          <div>
+            <label class="block font-bold text-gray-700 mb-1" for="login-email">Email address</label>
+            <input type="email" id="login-email" required autocomplete="email" placeholder="Enter your email address" class="w-full px-3.5 py-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-booking-blue outline-none text-sm transition">
+          </div>
+
+          <div>
+            <label class="block font-bold text-gray-700 mb-1" for="login-password">Password</label>
+            <input type="password" id="login-password" required autocomplete="current-password" placeholder="Enter your password" class="w-full px-3.5 py-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-booking-blue outline-none text-sm transition">
+          </div>
+
+          <p id="login-error" class="hidden text-booking-red font-semibold bg-red-50 border border-red-200 rounded px-3 py-2"></p>
+
+          <button id="login-submit" type="submit" class="w-full bg-booking-blue hover:bg-booking-blue-hover text-white font-bold py-3 rounded text-sm transition shadow-sm">
+            Sign in
+          </button>
+        </form>
+
+        <script>
+          const next = safeNext(new URLSearchParams(location.search).get('next'));
+          document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('login-submit');
+            const err = document.getElementById('login-error');
+            err.classList.add('hidden');
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+            if (!email || !password) { err.textContent = 'Enter your email and password.'; err.classList.remove('hidden'); return; }
+            btn.disabled = true; btn.textContent = 'Signing in...';
+            try {
+              const res = await fetch('api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+              });
+              const data = await res.json();
+              if (data.status) {
+                setAuthUser(data.user);
+                showToast(`Welcome back, ${data.user.fullName.split(' ')[0]}!`, 'success');
+                setTimeout(() => { location.href = next; }, 600);
+                return;
+              }
+              err.textContent = data.message || 'Sign in failed.';
+              err.classList.remove('hidden');
+            } catch (ex) {
+              err.textContent = 'Cannot reach the server. Please try again.';
+              err.classList.remove('hidden');
+            }
+            btn.disabled = false; btn.textContent = 'Sign in';
+          });
+
+          document.addEventListener('DOMContentLoaded', () => {
+            const reg = document.getElementById('to-register');
+            if (reg && next !== 'index.html') reg.href = 'register.html?next=' + encodeURIComponent(next);
+            refreshAuth().then((user) => { if (user) location.replace(next); });
+          });
+        </script>
+
+        <div class="my-6 relative flex items-center justify-center">
+          <div class="border-t border-gray-200 w-full"></div>
+          <span class="bg-white px-3 text-[11px] text-gray-400 font-medium absolute">or use one of these options</span>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <button onclick="showToast('$1 sign-in is not available yet', 'info')" class="flex items-center justify-center py-2.5 px-3 border border-gray-300 rounded hover:bg-gray-50 transition">
+            <i class="fa-brands fa-google text-red-500 text-base"></i>
+          </button>
+          <button onclick="showToast('$1 sign-in is not available yet', 'info')" class="flex items-center justify-center py-2.5 px-3 border border-gray-300 rounded hover:bg-gray-50 transition">
+            <i class="fa-brands fa-apple text-gray-900 text-base"></i>
+          </button>
+          <button onclick="showToast('$1 sign-in is not available yet', 'info')" class="flex items-center justify-center py-2.5 px-3 border border-gray-300 rounded hover:bg-gray-50 transition">
+            <i class="fa-brands fa-facebook text-blue-600 text-base"></i>
+          </button>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-gray-100 text-center text-xs text-gray-600">
+          <span>Don't have an account? </span>
+          <a id="to-register" href="register.html" class="text-booking-blue font-bold hover:underline">Register now</a>
+        </div>
+      </div>
+
+      <p class="text-center text-[11px] text-gray-400 leading-relaxed max-w-xs mx-auto">
+        By signing in, you agree with our <a href="#" class="text-booking-blue underline">Terms and conditions</a> and <a href="#" class="text-booking-blue underline">Privacy statement</a>.
+      </p>
+    </div>
+  </main>
+
+  <footer class="bg-white border-t border-gray-200 py-4 text-center text-xs text-gray-400">
+    © 2026 Lodge Sri Lanka. All rights reserved.
+  </footer>
+
+</body>
+</html>

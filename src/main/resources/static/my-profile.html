@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My profile | Lodge Sri Lanka</title>
+  <meta name="description" content="Explore and book luxury hotel villas across Sri Lanka - Mirissa, Galle, Kandy, Kalutara, and Anuradhapura. Best price guaranteed with instant reservation.">
+
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'booking-navy': '#003580',
+            'booking-navy-dark': '#00224f',
+            'booking-blue': '#006ce4',
+            'booking-blue-hover': '#0057b8',
+            'booking-yellow': '#febb02',
+            'booking-green': '#008234',
+            'booking-red': '#d4111e',
+            'booking-muted': '#595959'
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/common.js"></script>
+</head>
+<body class="bg-[#f5f5f5] text-gray-900 min-h-screen flex flex-col antialiased" data-auth="required">
+
+  <header class="bg-booking-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center gap-1.5 focus:outline-none">
+          <span class="bg-white rounded-md px-2.5 py-1 flex items-center shadow-xs">
+            <img src="assets/images/logo.png" alt="Lodge - Curated Global Stays" class="h-9 w-auto">
+          </span>
+          <span class="text-[10px] bg-booking-yellow text-booking-navy font-extrabold px-1.5 py-0.5 rounded tracking-wider uppercase ml-1">Sri Lanka</span>
+        </a>
+
+        <div class="flex items-center gap-2 sm:gap-4 text-sm font-semibold">
+          <div class="relative">
+            <button id="currency-btn" type="button" class="hover:bg-white/10 px-2.5 py-1.5 rounded transition flex items-center gap-1.5 text-xs sm:text-sm" title="Change currency">
+            <span id="currency-label">LKR</span><i class="fa-solid fa-chevron-down text-[9px] opacity-70"></i>
+          </button>
+          </div>
+          <div id="auth-slot" class="flex items-center gap-2 sm:gap-4">
+          <a href="register.html" class="bg-white text-booking-blue hover:bg-gray-100 px-3.5 py-1.5 rounded text-xs sm:text-sm font-bold transition shadow-xs">
+            Register
+          </a>
+          <a href="login.html" class="bg-white text-booking-blue hover:bg-gray-100 px-3.5 py-1.5 rounded text-xs sm:text-sm font-bold transition shadow-xs">
+            Sign in
+          </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-3xl w-full mx-auto px-4 sm:px-6 py-8 space-y-6">
+    <div class="flex items-center gap-4">
+      <span id="p-avatar" class="w-14 h-14 rounded-full bg-booking-navy text-white font-extrabold text-lg flex items-center justify-center">--</span>
+      <div class="min-w-0">
+        <h1 id="p-title" class="text-2xl font-extrabold text-gray-900 truncate">My profile</h1>
+        <p id="p-sub" class="text-xs text-booking-muted"></p>
+      </div>
+    </div>
+
+    <section class="bg-white border border-gray-200 rounded-xl p-6">
+      <h2 class="font-extrabold text-gray-900 mb-4">Personal details</h2>
+      <form id="profile-form" class="space-y-4 text-xs" novalidate>
+        <div>
+          <label class="block font-bold text-gray-700 mb-1" for="p-name">Full name *</label>
+          <input id="p-name" type="text" maxlength="150" required class="w-full px-3.5 py-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-booking-blue outline-none text-sm">
+        </div>
+        <div>
+          <label class="block font-bold text-gray-700 mb-1" for="p-email">Email address</label>
+          <input id="p-email" type="email" disabled class="w-full px-3.5 py-2.5 border border-gray-200 rounded bg-gray-50 text-gray-500 text-sm">
+          <p class="text-[11px] text-gray-400 mt-1">Your email is your sign-in name and can't be changed here.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-gray-700 mb-1" for="p-phone">Phone / WhatsApp</label>
+            <input id="p-phone" type="tel" maxlength="30" placeholder="+94 77 123 4567" class="w-full px-3.5 py-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-booking-blue outline-none text-sm">
+          </div>
+          <div>
+            <label class="block font-bold text-gray-700 mb-1" for="p-country">Country / Region</label>
+            <select id="p-country" class="w-full px-3.5 py-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-booking-blue outline-none text-sm bg-white"></select>
+          </div>
+        </div>
+        <p id="profile-msg" class="hidden font-semibold rounded px-3 py-2"></p>
+        <button id="profile-save" type="submit" class="bg-booking-blue hover:bg-booking-blue-hover text-white font-bold px-5 py-2.5 rounded text-sm transition">Save changes</button>
+      </form>
+    </section>
+
+    <section class="bg-white border border-gray-200 rounded-xl p-6">
+      <h2 class="font-extrabold text-gray-900 mb-4">Change password</h2>
+      <form id="password-form" class="space-y-4 text-xs" novalidate>
+        <div>
+          <label class="block font-bold text-gray-700 mb-1" for="pw-current">Current password</label>
+          <input id="pw-current" type="password" autocomplete="current-password" class="w-full px-3.5 py-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-booking-blue outline-none text-sm">
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-gray-700 mb-1" for="pw-new">New password</label>
+            <input id="pw-new" type="password" minlength="8" maxlength="72" autocomplete="new-password" placeholder="At least 8 characters" class="w-full px-3.5 py-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-booking-blue outline-none text-sm">
+          </div>
+          <div>
+            <label class="block font-bold text-gray-700 mb-1" for="pw-confirm">Confirm new password</label>
+            <input id="pw-confirm" type="password" autocomplete="new-password" class="w-full px-3.5 py-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-booking-blue outline-none text-sm">
+          </div>
+        </div>
+        <p id="password-msg" class="hidden font-semibold rounded px-3 py-2"></p>
+        <button id="password-save" type="submit" class="bg-booking-blue hover:bg-booking-blue-hover text-white font-bold px-5 py-2.5 rounded text-sm transition">Update password</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="bg-booking-navy text-white text-xs mt-16 py-6 text-center text-blue-200">
+    © 2026 Lodge Sri Lanka. All rights reserved.
+  </footer>
+
+  <script>
+
+    $('p-country').innerHTML = COUNTRIES.map(([c, n]) => `<option value="${c}">${n}</option>`).join('');
+
+    function message(el, text, ok) {
+      el.textContent = text;
+      el.className = 'font-semibold rounded px-3 py-2 ' + (ok ? 'text-booking-green bg-green-50 border border-green-200' : 'text-booking-red bg-red-50 border border-red-200');
+    }
+
+    function fill(user) {
+      $('p-avatar').textContent = initialsOf(user.fullName);
+      $('p-title').textContent = user.fullName;
+      $('p-sub').textContent = `${user.email}${user.memberSince ? ' · member since ' + user.memberSince : ''}`;
+      $('p-name').value = user.fullName;
+      $('p-email').value = user.email;
+      $('p-phone').value = user.phone || '';
+      if (![...$('p-country').options].some((o) => o.value === user.countryCode)) {
+        $('p-country').insertAdjacentHTML('beforeend', `<option value="${esc(user.countryCode)}">${esc(user.countryName)}</option>`);
+      }
+      $('p-country').value = user.countryCode;
+    }
+
+    $('profile-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const msg = $('profile-msg'), btn = $('profile-save');
+      const name = $('p-name').value.trim();
+      if (!name) return message(msg, 'Please enter your full name.', false);
+      btn.disabled = true;
+      try {
+        const data = await authCall('PUT', 'api/auth/profile', { fullName: name, phone: $('p-phone').value.trim(), countryCode: $('p-country').value });
+        setAuthUser(data.user); fill(data.user);
+        message(msg, 'Profile saved.', true);
+      } catch (err) { message(msg, err.message, false); }
+      btn.disabled = false;
+    });
+
+    $('password-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const msg = $('password-msg'), btn = $('password-save');
+      const cur = $('pw-current').value, nw = $('pw-new').value;
+      if (!cur) return message(msg, 'Enter your current password.', false);
+      if (nw.length < 8) return message(msg, 'New password must be at least 8 characters.', false);
+      if (nw !== $('pw-confirm').value) return message(msg, 'The new passwords do not match.', false);
+      btn.disabled = true;
+      try {
+        await authCall('PUT', 'api/auth/password', { currentPassword: cur, newPassword: nw });
+        ['pw-current', 'pw-new', 'pw-confirm'].forEach((id) => { $(id).value = ''; });
+        message(msg, 'Password updated.', true);
+      } catch (err) { message(msg, err.message, false); }
+      btn.disabled = false;
+    });
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await refreshAuth();
+      if (user) fill(user);
+    });
+
+  </script>
+</body>
+</html>

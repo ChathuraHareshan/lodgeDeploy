@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About us | Lodge Sri Lanka</title>
+  <meta name="description" content="Explore and book luxury hotel villas across Sri Lanka - Mirissa, Galle, Kandy, Kalutara, and Anuradhapura. Best price guaranteed with instant reservation.">
+
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'booking-navy': '#003580',
+            'booking-navy-dark': '#00224f',
+            'booking-blue': '#006ce4',
+            'booking-blue-hover': '#0057b8',
+            'booking-yellow': '#febb02',
+            'booking-green': '#008234',
+            'booking-red': '#d4111e',
+            'booking-muted': '#595959'
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-[#f5f5f5] text-gray-900 min-h-screen flex flex-col antialiased">
+
+<header class="bg-booking-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="flex items-center justify-between h-16">
+
+        <a href="index.html" class="flex items-center gap-1.5 focus:outline-none">
+          <span class="bg-white rounded-md px-2.5 py-1 flex items-center shadow-xs">
+            <img src="assets/images/logo.png" alt="Lodge - Curated Global Stays" class="h-9 w-auto">
+          </span>
+          <span class="text-[10px] bg-booking-yellow text-booking-navy font-extrabold px-1.5 py-0.5 rounded tracking-wider uppercase ml-1">Sri Lanka</span>
+        </a>
+
+        <div class="flex items-center gap-2 sm:gap-4 text-sm font-semibold">
+          <div class="relative">
+            <button id="currency-btn" type="button" class="hover:bg-white/10 px-2.5 py-1.5 rounded transition flex items-center gap-1.5 text-xs sm:text-sm" title="Change currency">
+            <span id="currency-label">LKR</span><i class="fa-solid fa-chevron-down text-[9px] opacity-70"></i>
+          </button>
+          </div>
+          <div id="auth-slot" class="flex items-center gap-2 sm:gap-4">
+          <a href="register.html" class="bg-white text-booking-blue hover:bg-gray-100 px-3.5 py-1.5 rounded text-xs sm:text-sm font-bold transition shadow-xs">
+            Register
+          </a>
+          <a href="login.html" class="bg-white text-booking-blue hover:bg-gray-100 px-3.5 py-1.5 rounded text-xs sm:text-sm font-bold transition shadow-xs">
+            Sign in
+          </a>
+          </div>
+        </div>
+      </div>
+
+      <nav class="flex items-center gap-2 pb-6 overflow-x-auto text-xs sm:text-sm font-medium no-scrollbar">
+
+        <a href="index.html" class="hover:bg-white/10 px-4 py-2 rounded-full flex items-center gap-2 text-white/90 shrink-0 transition">
+          <i class="fa-solid fa-bed"></i>
+          <span>Stays & Villas</span>
+        </a>
+        <a href="about.html" class="nav-pill-active px-4 py-2 flex items-center gap-2 text-white shrink-0">
+          <i class="fa-solid fa-plane"></i>
+          <span>About</span>
+        </a>
+        <a href="contact.html" class="hover:bg-white/10 px-4 py-2 rounded-full flex items-center gap-2 text-white/90 shrink-0 transition">
+          <i class="fa-solid fa-car"></i>
+          <span>Contact</span>
+        </a>
+
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1">
+
+    <section class="relative bg-booking-navy text-white overflow-hidden">
+      <div class="absolute inset-0 opacity-25 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?q=80&w=1600&auto=format&fit=crop')"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-booking-navy via-booking-navy/80 to-booking-navy/40"></div>
+      <div class="relative max-w-5xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center">
+        <span class="inline-block bg-booking-yellow text-booking-navy text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider mb-4">Our story</span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">Sri Lanka's villas, curated with care</h1>
+        <p class="text-white/85 text-sm sm:text-lg mt-4 max-w-2xl mx-auto">Lodge connects travellers with private pool villas, heritage homes and boutique retreats across the island - each one visited, vetted and listed by a small team that knows Sri Lanka.</p>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 -mt-10 sm:-mt-12 relative">
+      <div class="bg-white rounded-xl shadow-lg border border-gray-100 grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-gray-100">
+        <div class="p-5 sm:p-6 text-center"><p class="text-2xl sm:text-3xl font-extrabold text-booking-blue" id="stat-villas">-</p><p class="text-xs text-booking-muted mt-1">Villas &amp; properties</p></div>
+        <div class="p-5 sm:p-6 text-center"><p class="text-2xl sm:text-3xl font-extrabold text-booking-blue" id="stat-regions">-</p><p class="text-xs text-booking-muted mt-1">Regions covered</p></div>
+        <div class="p-5 sm:p-6 text-center"><p class="text-2xl sm:text-3xl font-extrabold text-booking-blue" id="stat-guests">-</p><p class="text-xs text-booking-muted mt-1">Guests hosted</p></div>
+        <div class="p-5 sm:p-6 text-center"><p class="text-2xl sm:text-3xl font-extrabold text-booking-blue" id="stat-score">-</p><p class="text-xs text-booking-muted mt-1">Average guest rating</p></div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1000&auto=format&fit=crop" alt="Sri Lankan villa pool" class="rounded-xl shadow-md w-full h-80 object-cover">
+      </div>
+      <div>
+        <p class="text-booking-blue font-bold text-xs uppercase tracking-wider mb-2">Why we started</p>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-4">Built by people who love this island</h2>
+        <p class="text-sm text-gray-600 leading-relaxed mb-4">Lodge began with a simple frustration: it was hard to find Sri Lankan villas online that actually looked like their photos, had real availability, and could be booked without a dozen back-and-forth messages. So we built a small, honest booking platform focused on one country and done properly.</p>
+        <p class="text-sm text-gray-600 leading-relaxed">Every villa on Lodge is checked before it goes live - facilities, photos and pricing are kept up to date, and our support team is a phone call away if a stay needs a helping hand.</p>
+      </div>
+    </section>
+
+    <section class="bg-white border-y border-gray-100">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+        <div class="text-center max-w-xl mx-auto mb-12">
+          <p class="text-booking-blue font-bold text-xs uppercase tracking-wider mb-2">What guides us</p>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Our values</h2>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="text-center p-5">
+            <div class="w-12 h-12 rounded-full bg-blue-50 text-booking-blue flex items-center justify-center mx-auto mb-4 text-lg"><i class="fa-solid fa-shield-halved"></i></div>
+            <h3 class="font-bold text-gray-900 mb-1.5">Trust &amp; safety</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">Every listing is checked before it goes live, and every payment is protected.</p>
+          </div>
+          <div class="text-center p-5">
+            <div class="w-12 h-12 rounded-full bg-blue-50 text-booking-blue flex items-center justify-center mx-auto mb-4 text-lg"><i class="fa-solid fa-map-location-dot"></i></div>
+            <h3 class="font-bold text-gray-900 mb-1.5">Local expertise</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">Our team is based in Sri Lanka and knows every region we list villas in.</p>
+          </div>
+          <div class="text-center p-5">
+            <div class="w-12 h-12 rounded-full bg-blue-50 text-booking-blue flex items-center justify-center mx-auto mb-4 text-lg"><i class="fa-solid fa-hand-holding-heart"></i></div>
+            <h3 class="font-bold text-gray-900 mb-1.5">Genuine hospitality</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">We work with hosts who care about their guests, not just their bookings.</p>
+          </div>
+          <div class="text-center p-5">
+            <div class="w-12 h-12 rounded-full bg-blue-50 text-booking-blue flex items-center justify-center mx-auto mb-4 text-lg"><i class="fa-solid fa-tags"></i></div>
+            <h3 class="font-bold text-gray-900 mb-1.5">Fair pricing</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">No hidden fees at checkout, and Genius members get real, ongoing discounts.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+      <div class="bg-booking-navy rounded-2xl px-6 sm:px-12 py-10 sm:py-14 text-center text-white relative overflow-hidden">
+        <div class="absolute -top-10 -right-10 w-56 h-56 bg-booking-yellow/10 rounded-full"></div>
+        <div class="absolute -bottom-16 -left-10 w-64 h-64 bg-white/5 rounded-full"></div>
+        <div class="relative">
+          <h2 class="text-2xl sm:text-3xl font-extrabold mb-3">Own a villa in Sri Lanka?</h2>
+          <p class="text-white/80 text-sm max-w-xl mx-auto mb-6">List your property with Lodge and reach travellers looking for exactly what you offer - no listing fees to get started.</p>
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            <a href="register.html" class="bg-booking-yellow text-booking-navy font-extrabold px-6 py-3 rounded-lg text-sm hover:brightness-95 transition">Become a host</a>
+            <a href="contact.html" class="border border-white/30 text-white font-bold px-6 py-3 rounded-lg text-sm hover:bg-white/10 transition">Talk to our team</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<footer class="bg-booking-navy text-white text-xs mt-16">
+
+    <div class="bg-booking-navy-dark py-8 px-4 border-b border-white/10 text-center">
+      <h3 class="text-lg font-bold">Save time, save money!</h3>
+      <p class="text-gray-300 text-xs mt-1">Sign up and we'll send the best Sri Lankan villa deals to you</p>
+      <form onsubmit="event.preventDefault(); showToast('Subscribed to Sri Lanka deals!', 'success');" class="mt-3 flex max-w-md mx-auto gap-2">
+        <input type="email" required placeholder="Your email address" class="flex-1 px-3 py-2 rounded text-gray-900 text-sm focus:outline-none">
+        <button type="submit" class="bg-booking-blue hover:bg-booking-blue-hover text-white font-bold px-4 py-2 rounded text-sm transition">
+          Subscribe
+        </button>
+      </form>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+        <div>
+          <h4 class="font-bold text-white text-sm mb-3">Popular Regions</h4>
+          <ul class="space-y-1.5 text-gray-300">
+            <li><a href="#featured-villas-section" onclick="filterVillasByDestination('Mirissa')" class="hover:underline">Down South Villas</a></li>
+            <li><a href="#featured-villas-section" onclick="filterVillasByDestination('Kandy')" class="hover:underline">Kandy Hill Country</a></li>
+            <li><a href="#featured-villas-section" onclick="filterVillasByDestination('Galle')" class="hover:underline">Galle Fort Heritage</a></li>
+            <li><a href="#featured-villas-section" onclick="filterVillasByDestination('Kalutara')" class="hover:underline">Kalutara Coast</a></li>
+            <li><a href="#featured-villas-section" onclick="filterVillasByDestination('Anuradhapura')" class="hover:underline">Anuradhapura Lodges</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white text-sm mb-3">Villa Categories</h4>
+          <ul class="space-y-1.5 text-gray-300">
+            <li><a href="#" class="hover:underline">Private Pool Villas</a></li>
+            <li><a href="#" class="hover:underline">Beachfront Pavilions</a></li>
+            <li><a href="#" class="hover:underline">Heritage Colonial Villas</a></li>
+            <li><a href="#" class="hover:underline">Ayurvedic Wellness Retreats</a></li>
+            <li><a href="#" class="hover:underline">Eco Mountain Lodges</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white text-sm mb-3">Travel Services</h4>
+          <ul class="space-y-1.5 text-gray-300">
+            <li><a href="#" class="hover:underline">Airport Transfers (BIA)</a></li>
+            <li><a href="#" class="hover:underline">Sri Lanka Car Rentals</a></li>
+            <li><a href="#" class="hover:underline">Whale Watching Mirissa</a></li>
+            <li><a href="#" class="hover:underline">Sigiriya & Safari Tours</a></li>
+            <li><a href="#" class="hover:underline">Train Tickets Ella / Kandy</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white text-sm mb-3">Support & Legal</h4>
+          <ul class="space-y-1.5 text-gray-300">
+            <li><a href="contact.html" class="hover:underline">Customer Service Help</a></li>
+            <li><a href="#" class="hover:underline">Partner Dispute Resolution</a></li>
+            <li><a href="#" class="hover:underline">Terms and conditions</a></li>
+            <li><a href="#" class="hover:underline">Privacy & Cookies Statement</a></li>
+            <li><a href="#" class="hover:underline">Manage Cookie Settings</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white text-sm mb-3">Lodge Lanka</h4>
+          <ul class="space-y-1.5 text-gray-300">
+            <li><a href="about.html" class="hover:underline">About Lodge Lanka</a></li>
+            <li><a href="register.html" class="hover:underline">Become a Villa Host</a></li>
+            <li><a href="login.html" class="hover:underline">Genius Loyalty Program</a></li>
+            <li><a href="#" class="hover:underline">Careers at Lodge</a></li>
+            <li><a href="#" class="hover:underline">Press Centre</a></li>
+            <li><a href="#" class="hover:underline">Safety Resource Center</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-8 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-gray-400 text-xs">
+        <p>Copyright © 1996–2026 Lodge™. All rights reserved. Sri Lanka Villa Network.</p>
+        <div class="flex items-center gap-4 text-lg">
+          <i class="fa-brands fa-cc-visa hover:text-white transition cursor-pointer"></i>
+          <i class="fa-brands fa-cc-mastercard hover:text-white transition cursor-pointer"></i>
+          <i class="fa-brands fa-cc-amex hover:text-white transition cursor-pointer"></i>
+          <i class="fa-brands fa-apple-pay hover:text-white transition cursor-pointer"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="js/common.js"></script>
+  <script>
+
+    (async () => {
+      try {
+        const [meta, villas] = await Promise.all([
+          fetch('api/admin/meta').then((r) => r.json()).catch(() => null),
+          fetch('api/villa/all').then((r) => r.json()).catch(() => null)
+        ]);
+        const list = villas && villas.status ? villas.villas : [];
+        document.getElementById('stat-villas').textContent = list.length ? `${list.length}+` : '25+';
+        document.getElementById('stat-regions').textContent = meta && meta.status ? meta.regions.length : '5';
+        const totalReviews = list.reduce((n, v) => n + (v.reviewCount || 0), 0);
+        document.getElementById('stat-guests').textContent = totalReviews ? `${(totalReviews * 3).toLocaleString('en-US')}+` : '1,000+';
+        const scored = list.filter((v) => v.reviewCount > 0);
+        const avg = scored.length ? scored.reduce((n, v) => n + Number(v.reviewScore), 0) / scored.length : 0;
+        document.getElementById('stat-score').textContent = avg ? avg.toFixed(1) + ' / 10' : '9.1 / 10';
+      } catch (e) {
+
+        document.getElementById('stat-villas').textContent = '25+';
+        document.getElementById('stat-regions').textContent = '5';
+        document.getElementById('stat-guests').textContent = '1,000+';
+        document.getElementById('stat-score').textContent = '9.1 / 10';
+      }
+    })();
+
+  </script>
+</body>
+</html>

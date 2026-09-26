@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lodge Admin | Operations Centre</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'booking-navy': '#003580',
+            'booking-navy-dark': '#00224f',
+            'booking-blue': '#006ce4',
+            'booking-blue-hover': '#0057b8',
+            'booking-yellow': '#febb02',
+            'booking-green': '#008234',
+            'booking-red': '#d4111e'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+  <div class="admin-shell">
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="admin-brand">
+        <a href="index.html" class="admin-logo"><img src="assets/images/logo.png" alt="Lodge"></a>
+        <span class="admin-brand-tag">ADMIN</span>
+      </div>
+      <div class="admin-profile">
+        <div class="admin-avatar">AK</div>
+        <div><strong>Admin Kumar</strong><span>Operations manager</span></div>
+        <i class="fa-solid fa-chevron-down"></i>
+      </div>
+      <nav class="admin-nav" aria-label="Admin sections">
+        <p class="admin-nav-label">Workspace</p>
+        <button class="admin-nav-item active" data-section="dashboard"><i class="fa-solid fa-chart-line"></i><span>Dashboard</span></button>
+        <button class="admin-nav-item" data-section="properties"><i class="fa-solid fa-building"></i><span>Villas & properties</span><b>0</b></button>
+        <button class="admin-nav-item" data-section="rooms"><i class="fa-solid fa-bed"></i><span>Rooms & inventory</span></button>
+        <button class="admin-nav-item" data-section="bookings"><i class="fa-solid fa-calendar-check"></i><span>Bookings</span></button>
+        <button class="admin-nav-item" data-section="reviews"><i class="fa-solid fa-star"></i><span>Reviews</span></button>
+        <button class="admin-nav-item" data-section="offers"><i class="fa-solid fa-tags"></i><span>Offers & promotions</span></button>
+        <p class="admin-nav-label admin-nav-label-spaced">Catalog</p>
+        <button class="admin-nav-item" data-section="facilities"><i class="fa-solid fa-list-check"></i><span>Facilities</span><b>0</b></button>
+        <button class="admin-nav-item" data-section="room-features"><i class="fa-solid fa-circle-check"></i><span>Room features</span><b>0</b></button>
+        <p class="admin-nav-label admin-nav-label-spaced">Manage</p>
+        <button class="admin-nav-item" data-section="guests"><i class="fa-solid fa-users"></i><span>Guests & partners</span></button>
+        <button class="admin-nav-item" data-section="settings"><i class="fa-solid fa-sliders"></i><span>Settings</span></button>
+      </nav>
+      <div class="admin-sidebar-foot"><a href="index.html"><i class="fa-solid fa-arrow-up-right-from-square"></i> View public site</a><span>v1.0.0 · Sri Lanka</span></div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <button class="admin-mobile-menu" id="mobile-menu" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+        <div class="admin-breadcrumb"><span>Workspace</span><i class="fa-solid fa-chevron-right"></i><strong id="breadcrumb-title">Dashboard</strong></div>
+        <div class="admin-top-actions">
+          <button class="admin-icon-button" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+          <button class="admin-icon-button admin-notification-button" id="notification-button" title="Notifications"><i class="fa-regular fa-bell"></i><span></span></button>
+          <div class="admin-date"><i class="fa-regular fa-calendar"></i><span>Monday, 21 Sep 2026</span></div>
+        </div>
+      </header>
+
+      <div class="admin-content">
+        <section class="admin-section active" id="section-dashboard">
+          <div class="admin-page-heading"><div><p class="admin-eyebrow">Good morning, Admin Kumar</p><h1>Operations overview</h1><p>Here is what is happening across Lodge today.</p></div><button class="admin-primary-button" data-action="add-villa"><i class="fa-solid fa-plus"></i> Add new villa</button></div>
+          <div class="admin-stat-grid">
+            <article class="admin-stat-card"><div class="admin-stat-icon blue"><i class="fa-solid fa-calendar-check"></i></div><div><span>Total bookings</span><strong id="stat-total-bookings">0</strong><small id="stat-total-bookings-note">Loading...</small></div></article>
+            <article class="admin-stat-card"><div class="admin-stat-icon yellow"><i class="fa-solid fa-wallet"></i></div><div><span>Revenue this month</span><strong id="stat-revenue">LKR 0</strong><small id="stat-revenue-note">Loading...</small></div></article>
+            <article class="admin-stat-card"><div class="admin-stat-icon green"><i class="fa-solid fa-building"></i></div><div><span>Active villas</span><strong id="stat-active-villas">0 <em>/ 0</em></strong><small id="stat-active-villas-note">Loading...</small></div></article>
+            <article class="admin-stat-card"><div class="admin-stat-icon red"><i class="fa-solid fa-message"></i></div><div><span>Needs attention</span><strong id="stat-attention">0</strong><small id="stat-attention-note">Loading...</small></div></article>
+          </div>
+          <div class="admin-dashboard-grid">
+            <article class="admin-panel revenue-panel"><div class="admin-panel-heading"><div><h2>Revenue performance</h2><p>Booking value by the day guests booked (cancelled bookings excluded)</p></div><select class="admin-select" id="rev-range"><option value="30">Last 30 days</option><option value="90">Last 90 days</option><option value="year">This year</option></select></div><div class="revenue-total"><strong id="rev-total">LKR 0</strong><span class="positive" id="rev-note"></span></div><div class="chart-wrap"><div class="chart-y-labels" id="rev-y"></div><div class="chart-area"><div class="chart-grid-lines"><i></i><i></i><i></i><i></i><i></i></div><svg class="revenue-chart" viewBox="0 0 720 230" preserveAspectRatio="none" aria-label="Revenue chart"><defs><linearGradient id="chart-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#006ce4" stop-opacity=".25"/><stop offset="1" stop-color="#006ce4" stop-opacity="0"/></linearGradient></defs><path id="rev-fill" d="" fill="url(#chart-fill)"/><path id="rev-line" d="" fill="none" stroke="#006ce4" stroke-width="3" vector-effect="non-scaling-stroke"/></svg><div class="chart-x-labels" id="rev-x"></div></div></div></article>
+            <article class="admin-panel"><div class="admin-panel-heading"><div><h2>Booking activity</h2><p>Latest reservations</p></div><button class="admin-link-button" data-section-link="bookings">View all <i class="fa-solid fa-arrow-right"></i></button></div><div class="activity-list" id="activity-list"><div class="empty-state">Loading...</div></div></article>
+          </div>
+          <div class="admin-dashboard-grid lower-grid"><article class="admin-panel"><div class="admin-panel-heading"><div><h2>Top performing villas</h2><p>By booking value, cancelled bookings excluded</p></div><button class="admin-link-button" data-section-link="properties">Manage villas <i class="fa-solid fa-arrow-right"></i></button></div><div class="mini-table"><div class="mini-table-head"><span>PROPERTY</span><span>BOOKINGS</span><span>REVENUE</span></div><div id="top-villas"></div></div></article><article class="admin-panel approval-panel"><div class="admin-panel-heading"><div><h2>Approval queue</h2><p>Items waiting for your review</p></div><span class="queue-count" id="queue-count">0</span></div><div class="approval-list"><button data-section-link="properties"><i class="fa-solid fa-building"></i><span><strong>Villas awaiting review</strong><small id="queue-villas-note">-</small></span><i class="fa-solid fa-chevron-right"></i></button><button data-section-link="reviews"><i class="fa-solid fa-comment"></i><span><strong>Guest reviews</strong><small id="queue-reviews-note">-</small></span><i class="fa-solid fa-chevron-right"></i></button><button data-section-link="offers"><i class="fa-solid fa-tag"></i><span><strong>Offers &amp; promotions</strong><small id="queue-offers-note">-</small></span><i class="fa-solid fa-chevron-right"></i></button></div></article></div>
+        </section>
+
+        <section class="admin-section" id="section-properties"><div class="admin-page-heading"><div><p class="admin-eyebrow">Inventory management</p><h1>Villas & properties</h1><p>Keep property profiles, visibility and partner approvals under control.</p></div><button class="admin-primary-button" data-action="add-villa"><i class="fa-solid fa-plus"></i> Add new villa</button></div><div class="admin-toolbar"><div class="admin-search"><i class="fa-solid fa-magnifying-glass"></i><input id="property-search" placeholder="Search villa, city or partner"></div><div class="admin-toolbar-actions"><select class="admin-select" id="property-status-filter"><option>All status</option><option>Published</option><option>Pending review</option><option>Paused</option></select><select class="admin-select" id="property-region-filter"><option value="">All regions</option></select></div></div><div class="admin-panel table-panel"><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>PROPERTY</th><th>LOCATION</th><th>ROOMS</th><th>RATING</th><th>BOOKINGS</th><th>REVENUE</th><th>STATUS</th><th>UPDATED</th><th></th></tr></thead><tbody id="properties-table"></tbody></table></div></div></section>
+
+        <section class="admin-section" id="section-rooms"><div class="admin-page-heading"><div><p class="admin-eyebrow">Availability & pricing</p><h1>Rooms & inventory</h1><p>Add room types to villas, tick their features from the <a href="#room-features" data-section-link="room-features" style="color:var(--blue);font-weight:600">room feature library</a>, adjust rates and keep live stock accurate.</p></div><button class="admin-primary-button" data-action="add-room"><i class="fa-solid fa-plus"></i> Add room type</button></div><div class="inventory-callout"><div class="callout-icon"><i class="fa-solid fa-circle-info"></i></div><div><strong id="inventory-title">Loading rooms...</strong><p id="inventory-text"></p></div><button class="admin-link-button" data-section-link="properties">Manage villas <i class="fa-solid fa-arrow-right"></i></button></div><div class="admin-toolbar"><div class="admin-search"><i class="fa-solid fa-magnifying-glass"></i><input id="room-search" placeholder="Search room type or villa"></div><select class="admin-select" id="room-villa-filter"><option value="">All villas</option></select></div><div class="admin-panel table-panel"><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>ROOM TYPE</th><th>VILLA</th><th>CAPACITY</th><th>PRICE / NIGHT</th><th>STOCK</th><th>STATUS</th><th></th></tr></thead><tbody id="rooms-table"></tbody></table></div></div></section>
+
+        <section class="admin-section" id="section-bookings"><div class="admin-page-heading"><div><p class="admin-eyebrow">Reservations</p><h1>Bookings</h1><p>Track reservations, payment status and guest stay details.</p></div><button class="admin-secondary-button" data-action="export-bookings"><i class="fa-solid fa-download"></i> Export report</button></div><div class="admin-filter-tabs" id="booking-tabs"><button data-tab="All" class="active">All bookings <b>0</b></button><button data-tab="Pending">Pending <b>0</b></button><button data-tab="Confirmed">Confirmed <b>0</b></button><button data-tab="Completed">Completed <b>0</b></button><button data-tab="Cancelled">Cancelled <b>0</b></button></div><div class="admin-toolbar"><div class="admin-search"><i class="fa-solid fa-magnifying-glass"></i><input id="booking-search" placeholder="Search booking ID, guest or villa"></div><div class="admin-toolbar-actions"><select class="admin-select" id="booking-date-filter"><option value="All dates">All check-in dates</option><option value="today">Check-in today</option><option value="week">Check-in next 7 days</option><option value="month">Check-in this month</option></select><select class="admin-select" id="booking-pay-filter"><option value="">All payment status</option><option value="Paid">Paid</option><option value="PayAtProperty">Pay at property</option><option value="Pending">Payment pending</option><option value="Failed">Payment failed</option></select></div></div><div class="admin-panel table-panel"><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>BOOKING</th><th>GUEST</th><th>PROPERTY</th><th>STAY DATES</th><th>AMOUNT</th><th>STATUS</th><th></th></tr></thead><tbody id="bookings-table"></tbody></table></div></div></section>
+
+        <section class="admin-section" id="section-reviews"><div class="admin-page-heading"><div><p class="admin-eyebrow">Guest experience</p><h1>Reviews &amp; moderation</h1><p>Guests can review a stay after check-out. Approve feedback before it appears on the villa page.</p></div><div class="heading-metric"><strong id="reviews-pending-metric">0</strong><span>awaiting approval</span></div></div><div class="review-summary"><div><span>Average guest score</span><strong id="rv-avg">- <small>/ 10</small></strong><div class="stars" id="rv-stars"></div></div><div><span>Published reviews</span><strong id="rv-published">0</strong><small>Visible on villa pages</small></div><div><span>Rejected</span><strong id="rv-rejected">0</strong><small>Hidden from guests</small></div></div><div class="admin-filter-tabs" id="review-tabs"><button data-tab="Pending" class="active">Needs approval <b>0</b></button><button data-tab="Approved">Published <b>0</b></button><button data-tab="Rejected">Rejected <b>0</b></button></div><div class="admin-panel review-panel"><div id="reviews-list"></div></div></section>
+
+        <section class="admin-section" id="section-offers"><div class="admin-page-heading"><div><p class="admin-eyebrow">Commercial tools</p><h1>Offers & promotions</h1><p>Create and manage the deals guests see across the Lodge marketplace.</p></div><button class="admin-primary-button" data-action="add-offer"><i class="fa-solid fa-plus"></i> Create offer</button></div><div class="offer-stat-row"><div><i class="fa-solid fa-bolt"></i><span>Live now</span><strong id="offer-live">0</strong></div><div><i class="fa-solid fa-calendar-plus"></i><span>Scheduled</span><strong id="offer-scheduled">0</strong></div><div><i class="fa-solid fa-hourglass-end"></i><span>Expired / inactive</span><strong id="offer-ended">0</strong></div></div><div class="admin-panel table-panel"><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>OFFER</th><th>DISCOUNT</th><th>VALIDITY</th><th>STATUS</th><th></th></tr></thead><tbody id="offers-table"></tbody></table></div></div></section>
+
+        <section class="admin-section" id="section-guests">
+          <div class="admin-page-heading"><div><p class="admin-eyebrow">People & relationships</p><h1>Guests & partners</h1><p>Every registered account: guests, property partners and admins, with quick actions.</p></div></div>
+          <div class="people-grid">
+            <article class="admin-panel people-card"><div class="people-card-icon blue"><i class="fa-solid fa-users"></i></div><span>Registered guests</span><strong id="people-guests">0</strong><small id="people-guests-note">-</small></article>
+            <article class="admin-panel people-card"><div class="people-card-icon yellow"><i class="fa-solid fa-handshake"></i></div><span>Active partners</span><strong id="people-partners">0</strong><small id="people-partners-note">-</small></article>
+            <article class="admin-panel people-card"><div class="people-card-icon green"><i class="fa-solid fa-user-shield"></i></div><span>Suspended accounts</span><strong id="people-suspended">0</strong><small id="people-suspended-note">-</small></article>
+          </div>
+          <div class="admin-toolbar" style="margin-top:16px">
+            <div class="admin-search"><i class="fa-solid fa-magnifying-glass"></i><input id="user-search" placeholder="Search name or email"></div>
+            <div class="admin-toolbar-actions"><select class="admin-select" id="user-role-filter"><option value="">All roles</option><option value="guest">Guests</option><option value="host">Partners</option><option value="admin">Admins</option></select><select class="admin-select" id="user-status-filter"><option value="">All statuses</option><option value="Active">Active</option><option value="Suspended">Suspended</option></select></div>
+          </div>
+          <div class="admin-panel table-panel"><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>USER</th><th>CONTACT</th><th>ROLE</th><th>BOOKINGS</th><th>TOTAL SPEND</th><th>STATUS</th><th>JOINED</th><th></th></tr></thead><tbody id="users-table"></tbody></table></div></div>
+        </section>
+
+        <section class="admin-section" id="section-settings">
+          <div class="admin-page-heading"><div><p class="admin-eyebrow">Workspace controls</p><h1>Settings</h1><p>Configure how your team operates the Lodge marketplace.</p></div><button class="admin-primary-button" id="save-settings"><i class="fa-solid fa-check"></i> Save changes</button></div>
+          <div class="settings-layout">
+            <div class="settings-menu"><button class="active">General settings</button></div>
+            <div class="admin-panel settings-panel">
+              <h2>General settings</h2>
+              <p class="settings-intro">These details appear across your internal workspace and operational emails.</p>
+              <label>Business name<input id="set-business-name" value="Lodge Sri Lanka"></label>
+              <label>Support email<input id="set-support-email" value="support@lodge.lk"></label>
+
+              <div class="toggle-setting" style="border-top:1px solid var(--line);padding-top:16px;flex-direction:column;align-items:stretch;gap:10px">
+                <div><strong>Currency & exchange rate</strong><span>Choose the currency shown across the public site and see today's USD ⇄ LKR rate.</span></div>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+                  <select class="admin-select" id="set-currency"><option value="LKR">LKR · Sri Lankan Rupee</option><option value="USD">USD · US Dollar</option></select>
+                  <button type="button" class="admin-secondary-button" id="refresh-rate"><i class="fa-solid fa-rotate"></i> Refresh today's rate</button>
+                  <span id="rate-status" style="font-size:12.5px;color:var(--muted)">Loading rate...</span>
+                </div>
+              </div>
+
+              <div class="toggle-setting"><div><strong>Require review approval</strong><span>New guest reviews stay hidden until a moderator approves them.</span></div><button class="toggle active" aria-label="Toggle review approval"><i></i></button></div>
+              <div class="toggle-setting"><div><strong>Low inventory alerts</strong><span>Notify managers when a room type falls below 3 available units.</span></div><button class="toggle active" aria-label="Toggle inventory alerts"><i></i></button></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="admin-section" id="section-facilities">
+          <div class="admin-page-heading"><div><p class="admin-eyebrow">Catalog</p><h1>Facilities catalog</h1><p>Every facility here becomes a tick-box when you add or edit a villa. Add it once, reuse it on all properties.</p></div><button class="admin-primary-button" data-action="add-facility"><i class="fa-solid fa-plus"></i> Add facility</button></div>
+          <div id="facility-quick-add"></div>
+          <div class="admin-toolbar"><div class="admin-search"><i class="fa-solid fa-magnifying-glass"></i><input id="facility-search" placeholder="Search facilities" autocomplete="off"></div></div>
+          <div class="admin-filter-tabs" id="facility-tabs"></div>
+          <div id="facility-groups"></div>
+        </section>
+
+        <section class="admin-section" id="section-room-features">
+          <div class="admin-page-heading"><div><p class="admin-eyebrow">Catalog</p><h1>Room features</h1><p>Build the library of in-room features (balcony, minibar, garden view...). They appear as tick-boxes when you add or edit a room type.</p></div><button class="admin-primary-button" data-action="add-feature"><i class="fa-solid fa-plus"></i> Add feature</button></div>
+          <div id="feature-quick-add"></div>
+          <div class="admin-toolbar"><div class="admin-search"><i class="fa-solid fa-magnifying-glass"></i><input id="feature-search" placeholder="Search features" autocomplete="off"></div></div>
+          <div class="admin-panel"><div class="admin-panel-heading"><div><h2>Feature library</h2><p>The number shows how many rooms use each feature.</p></div></div>
+            <div class="feature-list" id="feature-list"></div>
+            <div class="suggest-box" id="feature-suggestions"></div></div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <div class="admin-modal-backdrop hidden" id="admin-modal-backdrop"><div class="admin-modal" role="dialog" aria-modal="true"><div class="admin-modal-heading"><div><p class="admin-eyebrow" id="modal-eyebrow">Property management</p><h2 id="modal-title">Add new villa</h2></div><button class="admin-icon-button" id="close-modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button></div><form id="admin-form"><div id="modal-fields"></div><div class="admin-modal-actions"><span class="left" id="modal-hint"></span><button type="button" class="admin-secondary-button" id="cancel-modal">Cancel</button><button type="submit" class="admin-primary-button"><i class="fa-solid fa-check"></i> Save changes</button></div></form></div></div>
+  <div id="admin-toast-container"></div>
+  <script src="js/common.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

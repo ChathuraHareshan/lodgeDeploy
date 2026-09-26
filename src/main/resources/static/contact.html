@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact us | Lodge Sri Lanka</title>
+  <meta name="description" content="Explore and book luxury hotel villas across Sri Lanka - Mirissa, Galle, Kandy, Kalutara, and Anuradhapura. Best price guaranteed with instant reservation.">
+
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'booking-navy': '#003580',
+            'booking-navy-dark': '#00224f',
+            'booking-blue': '#006ce4',
+            'booking-blue-hover': '#0057b8',
+            'booking-yellow': '#febb02',
+            'booking-green': '#008234',
+            'booking-red': '#d4111e',
+            'booking-muted': '#595959'
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-[#f5f5f5] text-gray-900 min-h-screen flex flex-col antialiased">
+
+<header class="bg-booking-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="flex items-center justify-between h-16">
+
+        <a href="index.html" class="flex items-center gap-1.5 focus:outline-none">
+          <span class="bg-white rounded-md px-2.5 py-1 flex items-center shadow-xs">
+            <img src="assets/images/logo.png" alt="Lodge - Curated Global Stays" class="h-9 w-auto">
+          </span>
+          <span class="text-[10px] bg-booking-yellow text-booking-navy font-extrabold px-1.5 py-0.5 rounded tracking-wider uppercase ml-1">Sri Lanka</span>
+        </a>
+
+        <div class="flex items-center gap-2 sm:gap-4 text-sm font-semibold">
+          <div class="relative">
+            <button id="currency-btn" type="button" class="hover:bg-white/10 px-2.5 py-1.5 rounded transition flex items-center gap-1.5 text-xs sm:text-sm" title="Change currency">
+            <span id="currency-label">LKR</span><i class="fa-solid fa-chevron-down text-[9px] opacity-70"></i>
+          </button>
+          </div>
+          <div id="auth-slot" class="flex items-center gap-2 sm:gap-4">
+          <a href="register.html" class="bg-white text-booking-blue hover:bg-gray-100 px-3.5 py-1.5 rounded text-xs sm:text-sm font-bold transition shadow-xs">
+            Register
+          </a>
+          <a href="login.html" class="bg-white text-booking-blue hover:bg-gray-100 px-3.5 py-1.5 rounded text-xs sm:text-sm font-bold transition shadow-xs">
+            Sign in
+          </a>
+          </div>
+        </div>
+      </div>
+
+      <nav class="flex items-center gap-2 pb-6 overflow-x-auto text-xs sm:text-sm font-medium no-scrollbar">
+
+        <a href="index.html" class="hover:bg-white/10 px-4 py-2 rounded-full flex items-center gap-2 text-white/90 shrink-0 transition">
+          <i class="fa-solid fa-bed"></i>
+          <span>Stays & Villas</span>
+        </a>
+        <a href="about.html" class="hover:bg-white/10 px-4 py-2 rounded-full flex items-center gap-2 text-white/90 shrink-0 transition">
+          <i class="fa-solid fa-plane"></i>
+          <span>About</span>
+        </a>
+        <a href="contact.html" class="nav-pill-active px-4 py-2 flex items-center gap-2 text-white shrink-0">
+          <i class="fa-solid fa-car"></i>
+          <span>Contact</span>
+        </a>
+
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1">
+
+    <section class="bg-booking-navy text-white">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-14 sm:py-20 text-center">
+        <span class="inline-block bg-booking-yellow text-booking-navy text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider mb-4">We're here to help</span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">Get in touch with Lodge</h1>
+        <p class="text-white/85 text-sm sm:text-lg mt-4 max-w-2xl mx-auto">Questions about a booking, a villa, or becoming a host? Our Colombo-based team usually replies within a few hours.</p>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 -mt-10 sm:-mt-12 relative">
+      <div class="grid sm:grid-cols-3 gap-4">
+        <a href="tel:+94112345678" class="bg-white rounded-xl shadow-lg border border-gray-100 p-5 flex items-start gap-3 hover:-translate-y-0.5 transition">
+          <span class="w-10 h-10 rounded-full bg-blue-50 text-booking-blue flex items-center justify-center shrink-0"><i class="fa-solid fa-phone"></i></span>
+          <span><span class="block font-bold text-gray-900 text-sm">Call us</span><span class="block text-xs text-gray-500 mt-0.5">+94 11 234 5678</span><span class="block text-[11px] text-gray-400 mt-0.5">Daily, 7am - 10pm (GMT+5:30)</span></span>
+        </a>
+        <a href="mailto:hello@lodge.lk" class="bg-white rounded-xl shadow-lg border border-gray-100 p-5 flex items-start gap-3 hover:-translate-y-0.5 transition">
+          <span class="w-10 h-10 rounded-full bg-blue-50 text-booking-blue flex items-center justify-center shrink-0"><i class="fa-solid fa-envelope"></i></span>
+          <span><span class="block font-bold text-gray-900 text-sm">Email us</span><span class="block text-xs text-gray-500 mt-0.5">hello@lodge.lk</span><span class="block text-[11px] text-gray-400 mt-0.5">We usually reply within a few hours</span></span>
+        </a>
+        <a href="https://wa.me/94771234567" target="_blank" rel="noopener" class="bg-white rounded-xl shadow-lg border border-gray-100 p-5 flex items-start gap-3 hover:-translate-y-0.5 transition">
+          <span class="w-10 h-10 rounded-full bg-green-50 text-booking-green flex items-center justify-center shrink-0"><i class="fa-brands fa-whatsapp"></i></span>
+          <span><span class="block font-bold text-gray-900 text-sm">WhatsApp</span><span class="block text-xs text-gray-500 mt-0.5">+94 77 123 4567</span><span class="block text-[11px] text-gray-400 mt-0.5">Fastest way to reach us</span></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20 grid lg:grid-cols-5 gap-10">
+      <div class="lg:col-span-3 bg-white rounded-xl border border-gray-100 shadow-sm p-6 sm:p-8">
+        <h2 class="text-xl font-extrabold text-gray-900 mb-1">Send us a message</h2>
+        <p class="text-xs text-gray-500 mb-6">Tell us what's going on and, if it's about a booking, include your reference number.</p>
+        <form id="contact-form" class="space-y-4 text-xs" novalidate>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block font-bold text-gray-700 mb-1" for="c-name">Full name *</label>
+              <input id="c-name" type="text" required maxlength="150" class="w-full px-3.5 py-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-booking-blue outline-none text-sm">
+            </div>
+            <div>
+              <label class="block font-bold text-gray-700 mb-1" for="c-email">Email address *</label>
+              <input id="c-email" type="email" required maxlength="150" class="w-full px-3.5 py-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-booking-blue outline-none text-sm">
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block font-bold text-gray-700 mb-1" for="c-ref">Booking reference (optional)</label>
+              <input id="c-ref" type="text" maxlength="40" placeholder="e.g. SL-A1B2C3" class="w-full px-3.5 py-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-booking-blue outline-none text-sm">
+            </div>
+            <div>
+              <label class="block font-bold text-gray-700 mb-1" for="c-subject">Subject *</label>
+              <select id="c-subject" class="w-full px-3.5 py-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-booking-blue outline-none text-sm bg-white">
+                <option>Question about a booking</option>
+                <option>Question about a villa</option>
+                <option>Becoming a host</option>
+                <option>Payments &amp; refunds</option>
+                <option>Something else</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block font-bold text-gray-700 mb-1" for="c-message">Message *</label>
+            <textarea id="c-message" rows="5" required maxlength="2000" placeholder="How can we help?" class="w-full px-3.5 py-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-booking-blue outline-none text-sm"></textarea>
+          </div>
+          <p id="contact-error" class="hidden text-booking-red font-semibold bg-red-50 border border-red-200 rounded px-3 py-2"></p>
+          <p id="contact-success" class="hidden text-booking-green font-semibold bg-green-50 border border-green-200 rounded px-3 py-2"><i class="fa-solid fa-circle-check mr-1"></i> Thanks! Your message has been noted - our team will get back to you by email.</p>
+          <button id="contact-submit" type="submit" class="bg-booking-blue hover:bg-booking-blue-hover text-white font-bold px-6 py-3 rounded text-sm transition shadow-sm">Send message</button>
+        </form>
+      </div>
+
+      <div class="lg:col-span-2 space-y-4">
+        <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+          <div id="office-map" class="h-52 w-full bg-gray-100"></div>
+          <div class="p-5">
+            <h3 class="font-bold text-gray-900 text-sm mb-1"><i class="fa-solid fa-location-dot text-booking-blue mr-1.5"></i>Our office</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">42 Galle Road, Colombo 03, Western Province, Sri Lanka</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+          <h3 class="font-bold text-gray-900 text-sm mb-3"><i class="fa-regular fa-clock text-booking-blue mr-1.5"></i>Support hours</h3>
+          <div class="space-y-1.5 text-xs text-gray-600">
+            <div class="flex justify-between"><span>Monday - Friday</span><span class="font-semibold text-gray-800">7:00am - 10:00pm</span></div>
+            <div class="flex justify-between"><span>Saturday - Sunday</span><span class="font-semibold text-gray-800">8:00am - 8:00pm</span></div>
+          </div>
+          <p class="text-[11px] text-gray-400 mt-3">All times are Sri Lanka Standard Time (GMT+5:30).</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white border-t border-gray-100">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+        <div class="text-center mb-10">
+          <p class="text-booking-blue font-bold text-xs uppercase tracking-wider mb-2">Before you write in</p>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Common questions</h2>
+        </div>
+        <div id="faq-list" class="space-y-3"></div>
+      </div>
+    </section>
+  </main>
+
+<footer class="bg-booking-navy text-white text-xs mt-16">
+
+    <div class="bg-booking-navy-dark py-8 px-4 border-b border-white/10 text-center">
+      <h3 class="text-lg font-bold">Save time, save money!</h3>
+      <p class="text-gray-300 text-xs mt-1">Sign up and we'll send the best Sri Lankan villa deals to you</p>
+      <form onsubmit="event.preventDefault(); showToast('Subscribed to Sri Lanka deals!', 'success');" class="mt-3 flex max-w-md mx-auto gap-2">
+        <input type="email" required placeholder="Your email address" class="flex-1 px-3 py-2 rounded text-gray-900 text-sm focus:outline-none">
+        <button type="submit" class="bg-booking-blue hover:bg-booking-blue-hover text-white font-bold px-4 py-2 rounded text-sm transition">
+          Subscribe
+        </button>
+      </form>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+        <div>
+          <h4 class="font-bold text-white text-sm mb-3">Popular Regions</h4>
+          <ul class="space-y-1.5 text-gray-300">
+            <li><a href="#featured-villas-section" onclick="filterVillasByDestination('Mirissa')" class="hover:underline">Down South Villas</a></li>
+            <li><a href="#featured-villas-section" onclick="filterVillasByDestination('Kandy')" class="hover:underline">Kandy Hill Country</a></li>
+            <li><a href="#featured-villas-section" onclick="filterVillasByDestination('Galle')" class="hover:underline">Galle Fort Heritage</a></li>
+            <li><a href="#featured-villas-section" onclick="filterVillasByDestination('Kalutara')" class="hover:underline">Kalutara Coast</a></li>
+            <li><a href="#featured-villas-section" onclick="filterVillasByDestination('Anuradhapura')" class="hover:underline">Anuradhapura Lodges</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white text-sm mb-3">Villa Categories</h4>
+          <ul class="space-y-1.5 text-gray-300">
+            <li><a href="#" class="hover:underline">Private Pool Villas</a></li>
+            <li><a href="#" class="hover:underline">Beachfront Pavilions</a></li>
+            <li><a href="#" class="hover:underline">Heritage Colonial Villas</a></li>
+            <li><a href="#" class="hover:underline">Ayurvedic Wellness Retreats</a></li>
+            <li><a href="#" class="hover:underline">Eco Mountain Lodges</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white text-sm mb-3">Travel Services</h4>
+          <ul class="space-y-1.5 text-gray-300">
+            <li><a href="#" class="hover:underline">Airport Transfers (BIA)</a></li>
+            <li><a href="#" class="hover:underline">Sri Lanka Car Rentals</a></li>
+            <li><a href="#" class="hover:underline">Whale Watching Mirissa</a></li>
+            <li><a href="#" class="hover:underline">Sigiriya & Safari Tours</a></li>
+            <li><a href="#" class="hover:underline">Train Tickets Ella / Kandy</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white text-sm mb-3">Support & Legal</h4>
+          <ul class="space-y-1.5 text-gray-300">
+            <li><a href="contact.html" class="hover:underline">Customer Service Help</a></li>
+            <li><a href="#" class="hover:underline">Partner Dispute Resolution</a></li>
+            <li><a href="#" class="hover:underline">Terms and conditions</a></li>
+            <li><a href="#" class="hover:underline">Privacy & Cookies Statement</a></li>
+            <li><a href="#" class="hover:underline">Manage Cookie Settings</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white text-sm mb-3">Lodge Lanka</h4>
+          <ul class="space-y-1.5 text-gray-300">
+            <li><a href="about.html" class="hover:underline">About Lodge Lanka</a></li>
+            <li><a href="register.html" class="hover:underline">Become a Villa Host</a></li>
+            <li><a href="login.html" class="hover:underline">Genius Loyalty Program</a></li>
+            <li><a href="#" class="hover:underline">Careers at Lodge</a></li>
+            <li><a href="#" class="hover:underline">Press Centre</a></li>
+            <li><a href="#" class="hover:underline">Safety Resource Center</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-8 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-gray-400 text-xs">
+        <p>Copyright © 1996–2026 Lodge™. All rights reserved. Sri Lanka Villa Network.</p>
+        <div class="flex items-center gap-4 text-lg">
+          <i class="fa-brands fa-cc-visa hover:text-white transition cursor-pointer"></i>
+          <i class="fa-brands fa-cc-mastercard hover:text-white transition cursor-pointer"></i>
+          <i class="fa-brands fa-cc-amex hover:text-white transition cursor-pointer"></i>
+          <i class="fa-brands fa-apple-pay hover:text-white transition cursor-pointer"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="js/common.js"></script>
+  <script src="js/map.js"></script>
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const err = document.getElementById('contact-error'), ok = document.getElementById('contact-success'), btn = document.getElementById('contact-submit');
+      err.classList.add('hidden'); ok.classList.add('hidden');
+      const name = document.getElementById('c-name').value.trim();
+      const email = document.getElementById('c-email').value.trim();
+      const message = document.getElementById('c-message').value.trim();
+      if (!name) { err.textContent = 'Please enter your name.'; err.classList.remove('hidden'); return; }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) { err.textContent = 'Please enter a valid email address.'; err.classList.remove('hidden'); return; }
+      if (message.length < 10) { err.textContent = 'Please write a few words so we know how to help.'; err.classList.remove('hidden'); return; }
+
+      btn.disabled = true;
+      ok.classList.remove('hidden');
+      document.getElementById('contact-form').reset();
+      const subject = encodeURIComponent(document.getElementById('c-subject').value);
+      const ref = document.getElementById('c-ref').value.trim();
+      const body = encodeURIComponent(`${message}\n\n— ${name} (${email})${ref ? '\nBooking reference: ' + ref : ''}`);
+      setTimeout(() => { window.location.href = `mailto:hello@lodge.lk?subject=${subject}&body=${body}`; btn.disabled = false; }, 900);
+    });
+
+    const FAQS = [
+      ['How do I cancel or change a booking?', 'Sign in and open <a href="my-reservations.html" class="text-booking-blue font-semibold hover:underline">My reservations</a>. You can cancel online for free up until 4 days before check-in; closer than that, contact the villa directly using the reference shown on your reservation.'],
+      ['Do I need an account to book?', 'No - you can book as a guest and we\'ll set up an account for you with the reservation, using the password you choose at checkout. Signed-in guests can book directly from their saved details.'],
+      ['How and when do I pay?', 'Most villas on Lodge are pay-at-property, in LKR. Some listings support paying online in advance - this is shown on the villa page before you book.'],
+      ['How do I list my villa?', 'Click "Become a host" from the About page, or <a href="register.html" class="text-booking-blue font-semibold hover:underline">create an account</a> and get in touch with our onboarding team - we\'ll take it from there.']
+    ];
+    document.getElementById('faq-list').innerHTML = FAQS.map(([q, a], i) => `
+      <details class="group bg-gray-50 rounded-lg border border-gray-100" ${i === 0 ? 'open' : ''}>
+        <summary class="cursor-pointer list-none flex items-center justify-between gap-3 px-4 py-3.5 font-bold text-gray-900 text-sm">
+          ${q}<i class="fa-solid fa-chevron-down text-xs text-gray-400 group-open:rotate-180 transition-transform"></i>
+        </summary>
+        <p class="px-4 pb-4 text-xs text-gray-600 leading-relaxed">${a}</p>
+      </details>`).join('');
+
+    document.addEventListener('DOMContentLoaded', () => { initVillaMap(6.9139, 79.8487, 'Lodge Sri Lanka HQ', '42 Galle Road, Colombo 03', 'office-map'); });
+
+  </script>
+</body>
+</html>
