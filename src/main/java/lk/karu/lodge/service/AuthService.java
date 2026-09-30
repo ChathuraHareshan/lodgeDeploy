@@ -206,6 +206,7 @@ public class AuthService {
         u.setPhoneNumber(phone);
         applyCountry(u, code);
         u.setRole("guest");
+        u.setAccountStatus("Active");
         u.setGeniusLevel(1);
         return u;
     }
